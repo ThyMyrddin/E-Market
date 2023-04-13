@@ -4,11 +4,14 @@
 
 <div id="articles">
   <% @articles.each do |article| %>
+    <%if article.user == current_user%>
     <%= render article %>
     <p>
       <%= link_to "Show this article", article %>
     </p>
+    <%end%>
   <% end %>
 </div>
-
+<%if user_signed_in?%>
 <%= link_to "New article", new_article_path %>
+<%end%>
