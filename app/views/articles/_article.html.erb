@@ -1,0 +1,24 @@
+<div id="<%= dom_id article %>">
+  <p>
+    <strong>Label:</strong>
+    <%= article.label %>
+  </p>
+
+  <p>
+    <strong>Price:</strong>
+    <%= article.price %>
+  </p>
+
+  <p>
+    <strong>Description:</strong>
+    <%= article.description %>
+  </p>
+
+  <p>
+    <strong>Pictures:</strong>
+    <% article.pictures.each do |picture| %>
+      <%= link_to image_tag(picture,style:"width:150px;height:150px"), picture %>
+    <%end%>
+  </p>
+
+</div>
