@@ -13,7 +13,7 @@
 
   <div>
     <%= form.label :label, style: "display: block" %>
-    <%= form.text_field :label , required: true %>
+    <%= form.text_field :label , required: true ,pattern: "\\w{3,30}",placeholder: "min 5 character" %>
   </div>
 
   <div>
@@ -23,7 +23,7 @@
 
   <div>
     <%= form.label :description, style: "display: block" %>
-    <%= form.text_area :description , required: true %>
+    <%= form.text_field :description , required: true ,pattern: "\\w{15,100}",placeholder: "min 15 character" %>
   </div>
 
     <div>
@@ -35,8 +35,6 @@
     <%= form.label :category, style: "display: block" %>
     <%= form.select :category, [ ["Home & Kitchen","Home & Kitchen"],["Beauty & Personal Care","Beauty & Personal Care"],["Clothing, Shoes & Jewelry","Clothing, Shoes & Jewelry"],["Arts, Crafts & Sewing","Arts, Crafts & Sewing"],["Electronics","Electronics"],["Sports & Outdoors","Sports & Outdoors"],["Health, Household & Baby Care","Health, Household & Baby Care"],["Toys & Games","Toys & Games"],["Cell Phone & Accessories","Cell Phone & Accessories"],["Office Products","Office Products"],["Pet Supplies","Pet Supplies"],["Books","Books"],["Tools & Home Improvement","Tools & Home Improvement"],["Automotive Parts & Accessories","Automotive Parts & Accessories"],["Garden & Outdoor","Garden & Outdoor"],["Handmade","Handmade"],["Collectibles & Fine Art","Collectibles & Fine Art"] ], class: "form-select" ,required: true %>
   </div>
-
-
 
   <div>
     <%= form.label :pictures, style: "display: block" %>
