@@ -14,14 +14,21 @@
     <%= article.description %>
   </p>
 
-    <p>
+  <p>
     <strong>City:</strong>
     <%= article.localisation %>
   </p>
 
-      <p>
+  <p>
     <strong>Category:</strong>
     <%= article.category %>
+  </p>
+
+    <p>
+    <strong>User:</strong>
+    <%= article.user.lastname %>
+    <%= article.user.firstname %>
+    <%= image_tag(article.user.avatar,style:"width:50px;height:50px") %>
   </p>
 
   <p>
