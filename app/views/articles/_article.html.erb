@@ -27,7 +27,7 @@
   <p>
     <strong>Pictures:</strong>
     <% article.pictures.each do |picture| %>
-      <%= link_to image_tag(picture,style:"width:150px;height:150px"), picture %>
+      <%= image_tag(picture,style:"width:150px;height:150px")%>
     <%end%>
   </p>
 
