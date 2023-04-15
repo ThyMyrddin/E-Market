@@ -4,6 +4,13 @@
 <div>
   
   <%= link_to "Back to articles", root_path %>
+  <%if user_signed_in?%>
+    <% if current_user.favorite_articles.include?(@article) %>
+      <%= button_to "Unfavorite", article_favorite_path(@article), method: :delete , remote: true %>
+    <% else %>
+      <%= button_to "Favorite", article_favorites_path(@article), method: :post , remote: true %>
+    <% end %>
+  <%end%>
 
   <%if user_signed_in? and @article.user == current_user%>
   <%= link_to "Edit this article", edit_article_path(@article) %> 
