@@ -1,18 +1,19 @@
 <div id="<%= dom_id article %>">
-  <p>
 
+
+  <p>
     <strong>Label:</strong>
     <%= article.label %>
+  </p>
+
+      <p>
+    <strong>State:</strong>
+    <%= article.condition %>
   </p>
 
   <p>
     <strong>Price:</strong>
     <%= article.price %>DH
-  </p>
-
-  <p>
-    <strong>Description:</strong>
-    <%= article.description %>
   </p>
 
   <p>
@@ -35,11 +36,6 @@
     <%= article.user.lastname %>
     <%= article.user.firstname %>
     <%= phone_to article.user.phone, "Make a Call", country_code: "212" %>
-    <% if article.user.avatar.attached? %>
-    <%= image_tag(article.user.avatar,style:"width:150px;height:150px") %>
-    <% else %>
-    <%= image_tag("default_profile.jpg",style:"width:150px;height:150px") %>
-    <%end%>
   </p>
 
   <p>
@@ -49,4 +45,27 @@
     <%end%>
   </p>
 
+<% if @render_from == "show" %> 
+
+  <p>
+    <strong>Description:</strong>
+    <%= article.description %>
+  </p>
+
+    <p>
+    <strong>User pic:</strong>
+    <% if article.user.avatar.attached? %>
+    <%= image_tag(article.user.avatar,style:"width:150px;height:150px") %>
+    <% else %>
+    <%= image_tag("default_profile.jpg",style:"width:150px;height:150px") %>
+    <%end%>
+  </p>
+
+<% end %>
+
+
+
+
+
+  
 </div>
