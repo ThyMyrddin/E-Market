@@ -1,7 +1,9 @@
 <div id="<%= dom_id article %>">
 
 
-  <p>
+<% if @render_from == "show" %> 
+
+    <p>
     <strong>Label:</strong>
     <%= article.label %>
   </p>
@@ -45,8 +47,6 @@
     <%end%>
   </p>
 
-<% if @render_from == "show" %> 
-
   <p>
     <strong>Description:</strong>
     <%= article.description %>
@@ -60,6 +60,61 @@
     <%= image_tag("default_profile.jpg",style:"width:150px;height:150px") %>
     <%end%>
   </p>
+
+
+  <%else%>
+<div class="flex flex-row">
+
+<div class="p-2 h-36 w-36 flex justify-center">
+      <%= image_tag(article.pictures.first,class:"object-scale-down")%>
+  </div>
+<div class="p-2 w-60">
+  <p>
+    <strong class="text-lg"><%= article.label.capitalize %></strong>
+    
+  </p>
+  <div class="ml-1 mt-1">
+  <p class="text-sm">
+  <strong>City:</strong>
+    <%= article.localisation%>
+  </p>
+      <p class="text-sm">
+    <strong>State:</strong>
+    <%= article.condition %>
+  </p>
+
+  <p class="text-sm">
+    <strong>Category:</strong>
+    <%= article.category %>
+  </p>
+  </div>
+
+  </div>
+  <div class="border-l-2 p-2 w-40">
+  <div class="text-center">
+    <div class="mb-2 mt-2 text-green-600">
+    <strong><%= article.price %> DH</strong>
+  </div>
+
+  <%= phone_to article.user.phone, "Make a Call", country_code: "212", class:"hover:bg-blue-500 hover:text-white text-blue-500 text-sm font-semibold py-1 px-2 rounded-md border-blue-500 border border-2" %>
+<div class="mt-6">
+    <div class="text-xs text-zinc-600 ">
+    <strong>Posted in</strong>
+    <%= article.created_at.to_date %>
+  </div>
+
+    <div class="text-xs text-zinc-600">
+    <strong>Posted by</strong>
+    <%= article.user.lastname.capitalize %>
+    <%= article.user.firstname.capitalize %>
+    
+  </div>
+  </div>
+  </div>
+  </div>
+
+  
+</div>
 
 <% end %>
 

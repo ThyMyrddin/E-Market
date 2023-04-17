@@ -4,6 +4,9 @@ class FavoritesController < ApplicationController
 
     def index
       @articles = current_user.favorite_articles
+      @q = @articles.ransack(params[:q])
+      @articles = @q.result(distinct: true)
+    
     end
 
 

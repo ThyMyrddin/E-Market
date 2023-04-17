@@ -1,5 +1,8 @@
 <% if resource.errors.any? %>
-  <div id="error_explanation" data-turbo-cache="false" class="alert alert-warning alert-dismissible fade show" role="alert">
+<div class="fixed w-full flex justify-center" id="error_explanation" data-turbo-cache="false" role="alert">
+  <div class=" w-fit h-fit px-4 py-3 flex items-center text-white border-0 rounded relative bg-yellow-500">
+  <span class="inline-block align-middle mr-8">
+    <span class="capitalize">
     <h2>
       <%= I18n.t("errors.messages.not_saved",
                  count: resource.errors.count,
@@ -8,10 +11,27 @@
     </h2>
     <ul>
       <% resource.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+        <li>-<%= message %></li>
       <% end %>
     </ul>
-    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-  </div>
-  
+    </span>
+  </span>
+  <button class="absolute bg-transparent text-2xl font-semibold leading-none right-0 mr-4 outline-none focus:outline-none" onclick="closeAlert(event)">
+    <span>×</span>
+  </button>
+</div></div>
+<script>
+  function closeAlert(event){
+    let element = event.target;
+    while(element.nodeName !== "BUTTON"){
+      element = element.parentNode;
+    }
+    element.parentNode.parentNode.removeChild(element.parentNode);
+  }
+</script>
+
+
+
+
+
 <% end %>

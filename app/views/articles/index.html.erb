@@ -1,17 +1,44 @@
 
+<div class="grid grid-cols-5">
+<div class="fixed top-14 left-0 w-1/5 h-screen bg-zinc-100 border">
 
-<h1>Articles</h1>
+  <h1 class="mt-10 flex justify-center"><div class="font-semibold text-xl text-zinc-700">Search/Sort:</div></h1>
 
-<div id="articles">
+  <%= search_form_for(@q , url: articles_path) do |f| %>
+    <div class="flex justify-around p-10">
+    <%= sort_link(@q, :price, "Price", default_order: :asc,class:"button-border") %>
+    <%= sort_link(@q, :created_at, "Time", default_order: :asc,class:"button-border") %>
+    </div>
+    <div class="flex flex-col w-60 ml-4">
+    <%= f.search_field :label_cont, placeholder: "Search for Articles"  %>
+    <br/>
+    <%= f.select :localisation_cont, [ ["Select City",""], ["Agadir","Agadir"], ["Al Hoceima","Al Hoceima"], ["Azilal","Azilal"], ["Beni Mellal","Beni Mellal"], ["Ben Slimane","Ben Slimane"], ["Boulemane","Boulemane"], ["Casablanca","Casablanca"], ["Chaouen","Chaouen"], ["El Jadida","El Jadida"], ["El Kelaa des Sraghna","El Kelaa des Sraghna"], ["Er Rachidia","Er Rachidia"], ["Essaouira","Essaouira"], ["Fes","Fes"], ["Figuig","Figuig"], ["Guelmim","Guelmim"], ["Ifrane","Ifrane"], ["Kenitra","Kenitra"], ["Khemisset","Khemisset"], ["Khenifra","Khenifra"], ["Khouribga","Khouribga"], ["Laayoune","Laayoune"], ["Larache","Larache"], ["Marrakech","Marrakech"], ["Meknes","Meknes"], ["Nador","Nador"], ["Ouarzazate","Ouarzazate"], ["Oujda","Oujda"], ["Rabat-Sale","Rabat-Sale"], ["Safi","Safi"], ["Settat","Settat"], ["Sidi Kacem","Sidi Kacem"], ["Tangier","Tangier"], ["Tan-Tan","Tan-Tan"], ["Taounate","Taounate"], ["Taroudannt","Taroudannt"], ["Tata","Tata"], ["Taza","Taza"], ["Tetouan","Tetouan"], ["Tiznit","Tiznit"]]  %>
+    <br/>
+    <%= f.select :category_cont, [ ["Select Category",""],["Home & Kitchen","Home & Kitchen"],["Beauty & Personal Care","Beauty & Personal Care"],["Clothing, Shoes & Jewelry","Clothing, Shoes & Jewelry"],["Arts, Crafts & Sewing","Arts, Crafts & Sewing"],["Electronics","Electronics"],["Sports & Outdoors","Sports & Outdoors"],["Health, Household & Baby Care","Health, Household & Baby Care"],["Toys & Games","Toys & Games"],["Cell Phone & Accessories","Cell Phone & Accessories"],["Office Products","Office Products"],["Pet Supplies","Pet Supplies"],["Books","Books"],["Tools & Home Improvement","Tools & Home Improvement"],["Automotive Parts & Accessories","Automotive Parts & Accessories"],["Garden & Outdoor","Garden & Outdoor"],["Handmade","Handmade"],["Collectibles & Fine Art","Collectibles & Fine Art"] ] %>
+    <br/>
+    <%= f.submit "Search" ,class:"button-full"%>
+    </div>
+  <% end %>
+    <div class="mt-16 h-fit text-center border-t-2">
+    <div class="py-6  text-zinc-600">Create New Article?</div>
+    <%= link_to "New article", new_article_path ,class:"button-border"%>
+    </div>
+</div>
+
+
+<div class="col-span-4 col-start-2 ml-4 mr-4 mt-20 mb-8">
+
+<div id="articles" class="grid grid-cols-2 gap-4">
   <% @articles.each do |article| %>
-    <%if article.user == current_user%>
+  <%if article.user == current_user%>
+  <div class="border-2 relative p-2 shadow">
     <%= render article %>
     <p>
-      <%= link_to "Show this article", article %>
+      <%= link_to "Details", article , class:"absolute bottom-3 left-48 bg-blue-500 hover:bg-blue-700 text-sm text-white font-semibold py-1 px-2 rounded-md" %>
     </p>
-    <%end%>
+  </div>
+  <%end%>
   <% end %>
 </div>
-<%if user_signed_in?%>
-<%= link_to "New article", new_article_path %>
-<%end%>
+</div>
+</div>
